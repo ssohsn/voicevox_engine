@@ -39,7 +39,11 @@ from voicevox_engine.morphing import (
 )
 from voicevox_engine.preset import Preset, PresetLoader
 from voicevox_engine.synthesis_engine import SynthesisEngineBase, make_synthesis_engines
-from voicevox_engine.utility import ConnectBase64WavesException, connect_base64_waves
+from voicevox_engine.utility import (
+    ConnectBase64WavesException,
+    connect_base64_waves,
+    engine_root,
+)
 
 
 def b64encode_str(s):
@@ -540,9 +544,9 @@ if __name__ == "__main__":
     multiprocessing.freeze_support()
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", type=str, default="127.0.0.1")
-    parser.add_argument("--port", type=int, default=50021)
+    parser.add_argument("--port", type=int, default=50041)
     parser.add_argument("--use_gpu", action="store_true")
-    parser.add_argument("--voicevox_dir", type=Path, default=None)
+    parser.add_argument("--engine_dir", type=Path, default=(engine_root() / "myengine"))
     parser.add_argument("--voicelib_dir", type=Path, default=None, action="append")
     parser.add_argument("--runtime_dir", type=Path, default=None, action="append")
     parser.add_argument("--enable_mock", action="store_true")
